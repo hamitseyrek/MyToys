@@ -94,6 +94,6 @@ class DetailsVC: UIViewController,PHPickerViewControllerDelegate{
         } catch {
             print("error")
         }
-        
+        self.navigationController?.popViewController(animated: true)
     }
 }
