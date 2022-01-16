@@ -30,8 +30,6 @@ class DetailsVC: UIViewController,PHPickerViewControllerDelegate{
         toyImageView.isUserInteractionEnabled = true
         let selectImage2 = UITapGestureRecognizer(target: self, action: #selector(selectImage1))
         toyImageView.addGestureRecognizer(selectImage2)
-        
-        
     }
     
     //hide Keyboard
@@ -94,6 +92,10 @@ class DetailsVC: UIViewController,PHPickerViewControllerDelegate{
         } catch {
             print("error")
         }
+        
+        // send notify that refresh TableView to HomeVC
+        //NotificationCenter allows us to share any data between viewController
+        NotificationCenter.default.post(name: NSNotification.Name("newData"), object: nil)
         self.navigationController?.popViewController(animated: true)
     }
 }
