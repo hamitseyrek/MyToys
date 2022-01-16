@@ -8,6 +8,7 @@
 import UIKit
 import PhotosUI
 import Photos
+import CoreData
 
 class DetailsVC: UIViewController,PHPickerViewControllerDelegate{
     
@@ -69,6 +70,30 @@ class DetailsVC: UIViewController,PHPickerViewControllerDelegate{
     }
     
     @IBAction func saveButtonClick(_ sender: Any) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let newToy = NSEntityDescription.insertNewObject(forEntityName: "Toys", into: context)
+        
+        //Attributes
+        newToy.setValue(nameText.text!, forKey: "name")
+        if let age = Int(ageText.text!){
+            newToy.setValue(age, forKey: "age")
+        }
+        newToy.setValue(typeText.text!, forKey: "type")
+        newToy.setValue(colorText.text!, forKey: "color")
+        newToy.setValue(UUID(), forKey: "id")
+        if let data = toyImageView.image?.jpegData(compressionQuality: 0.5) {
+            newToy.setValue(data, forKey: "image")
+        }
+        
+        //save to CoreData
+        do {
+            try context.save()
+            print("success")
+        } catch {
+            print("error")
+        }
         
     }
 }
