@@ -9,23 +9,25 @@
 /* Begin PBXBuildFile section */
 		5EF32DAD279401FB0008DB3E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF32DAC279401FB0008DB3E /* AppDelegate.swift */; };
 		5EF32DAF279401FB0008DB3E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF32DAE279401FB0008DB3E /* SceneDelegate.swift */; };
-		5EF32DB1279401FB0008DB3E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF32DB0279401FB0008DB3E /* ViewController.swift */; };
+		5EF32DB1279401FB0008DB3E /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF32DB0279401FB0008DB3E /* HomeVC.swift */; };
 		5EF32DB4279401FB0008DB3E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EF32DB2279401FB0008DB3E /* Main.storyboard */; };
 		5EF32DB7279401FB0008DB3E /* MyToys.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5EF32DB5279401FB0008DB3E /* MyToys.xcdatamodeld */; };
 		5EF32DB9279401FC0008DB3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EF32DB8279401FC0008DB3E /* Assets.xcassets */; };
 		5EF32DBC279401FC0008DB3E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EF32DBA279401FC0008DB3E /* LaunchScreen.storyboard */; };
+		5EF32DC4279406F10008DB3E /* DetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF32DC3279406F10008DB3E /* DetailsVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5EF32DA9279401FB0008DB3E /* MyToys.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyToys.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EF32DAC279401FB0008DB3E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5EF32DAE279401FB0008DB3E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		5EF32DB0279401FB0008DB3E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		5EF32DB0279401FB0008DB3E /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		5EF32DB3279401FB0008DB3E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5EF32DB6279401FB0008DB3E /* MyToys.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyToys.xcdatamodel; sourceTree = "<group>"; };
 		5EF32DB8279401FC0008DB3E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5EF32DBB279401FC0008DB3E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5EF32DBD279401FC0008DB3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5EF32DC3279406F10008DB3E /* DetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,8 +62,9 @@
 			children = (
 				5EF32DAC279401FB0008DB3E /* AppDelegate.swift */,
 				5EF32DAE279401FB0008DB3E /* SceneDelegate.swift */,
-				5EF32DB0279401FB0008DB3E /* ViewController.swift */,
+				5EF32DB0279401FB0008DB3E /* HomeVC.swift */,
 				5EF32DB2279401FB0008DB3E /* Main.storyboard */,
+				5EF32DC3279406F10008DB3E /* DetailsVC.swift */,
 				5EF32DB8279401FC0008DB3E /* Assets.xcassets */,
 				5EF32DBA279401FC0008DB3E /* LaunchScreen.storyboard */,
 				5EF32DBD279401FC0008DB3E /* Info.plist */,
@@ -142,9 +145,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				5EF32DB7279401FB0008DB3E /* MyToys.xcdatamodeld in Sources */,
-				5EF32DB1279401FB0008DB3E /* ViewController.swift in Sources */,
+				5EF32DB1279401FB0008DB3E /* HomeVC.swift in Sources */,
 				5EF32DAD279401FB0008DB3E /* AppDelegate.swift in Sources */,
 				5EF32DAF279401FB0008DB3E /* SceneDelegate.swift in Sources */,
+				5EF32DC4279406F10008DB3E /* DetailsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
