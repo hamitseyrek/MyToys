@@ -15,6 +15,8 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     //variables
     var nameArray = [String]()
     var idArray = [UUID]()
+    var selectedToy = ""
+    var selectedToyID : UUID?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,15 +41,17 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Toys")
         fetchRequest.returnsObjectsAsFaults = false // use cache
         do {
-           let results =  try context.fetch(fetchRequest)
-            for result in results as! [NSManagedObject] {
-                if let name = result.value(forKey: "name") as? String {
-                    self.nameArray.append(name)
+            let results =  try context.fetch(fetchRequest)
+            if results.count > 0 {
+                for result in results as! [NSManagedObject] {
+                    if let name = result.value(forKey: "name") as? String {
+                        self.nameArray.append(name)
+                    }
+                    if let id = result.value(forKey: "id") as? UUID {
+                        self.idArray.append(id)
+                    }
+                    self.toysTableView.reloadData()
                 }
-                if let id = result.value(forKey: "id") as? UUID {
-                    self.idArray.append(id)
-                }
-                self.toysTableView.reloadData()
             }
         }catch{
             print("There is an error")
@@ -70,6 +74,50 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         content.text = nameArray[indexPath.row]
         cell.contentConfiguration = content
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toDetailsVCS" {
+            let destinationVC = segue.destination as! DetailsVC
+            destinationVC.selectedToyID = selectedToyID
+        }
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedToyID = idArray[indexPath.row]
+        performSegue(withIdentifier: "toDetailsVCS", sender: nil)
+    }
+    
+    //Delete
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let fetshRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Toys")
+        let idString = idArray[indexPath.row].uuidString
+        fetshRequest.predicate = NSPredicate(format: "id = %@", idString)
+        fetshRequest.returnsObjectsAsFaults = false
+        do {
+            let results = try context.fetch(fetshRequest)
+            if results.count > 0 {
+                for result in results as! [NSManagedObject] {
+                    if let id = result.value(forKey: "id") as? UUID{
+                        if id == idArray[indexPath.row]{
+                            context.delete(result)
+                            nameArray.remove(at: indexPath.row)
+                            idArray.remove(at: indexPath.row)
+                            self.toysTableView.reloadData()
+                            do {
+                                try context.save()
+                                break
+                            }catch {
+                                print("There is an error here 5")
+                            }
+                        }
+                    }
+                }
+            }
+        }catch{
+            print("There is an error here3")
+        }
     }
 }
 

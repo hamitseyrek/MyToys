@@ -18,9 +18,49 @@ class DetailsVC: UIViewController,PHPickerViewControllerDelegate{
     @IBOutlet weak var typeText: UITextField!
     @IBOutlet weak var ageText: UITextField!
     
+    //variables
+    var selectedToy = ""
+    var selectedToyID : UUID?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if selectedToyID != nil {
+            //CoreData
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let context = appDelegate.persistentContainer.viewContext
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Toys")
+            let idString = selectedToyID?.uuidString
+            //query
+            fetchRequest.predicate = NSPredicate(format: "id = %@", idString!)
+            fetchRequest.returnsObjectsAsFaults = false
+            
+            do {
+                let results = try context.fetch(fetchRequest)
+                if results.count > 0 {
+                    for result in results as! [NSManagedObject] {
+                        if let name = result.value(forKey: "name") as? String {
+                            nameText.text = name
+                        }
+                        if let age = result.value(forKey: "age") as? Int {
+                            ageText.text = String(age)
+                        }
+                        if let type = result.value(forKey: "type") as? String {
+                            typeText.text = type
+                        }
+                        if let color = result.value(forKey: "color") as? String {
+                            colorText.text = color
+                        }
+                        if let imageData = result.value(forKey: "image") as? Data {
+                            toyImageView.image = UIImage(data: imageData)
+                        }
+                    }
+                }
+            }catch{
+                print("There is an error here!!!")
+            }
+            
+        }
         
         // hide keyboard when click in viewcontroller
         let closeKeyboard = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
@@ -59,7 +99,7 @@ class DetailsVC: UIViewController,PHPickerViewControllerDelegate{
                         return
                     } else if let picture = image as? UIImage {
                         DispatchQueue.main.sync {
-                               self.toyImageView.image = picture
+                            self.toyImageView.image = picture
                         }
                     }
                 }
