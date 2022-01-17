@@ -17,15 +17,16 @@ class DetailsVC: UIViewController,PHPickerViewControllerDelegate{
     @IBOutlet weak var colorText: UITextField!
     @IBOutlet weak var typeText: UITextField!
     @IBOutlet weak var ageText: UITextField!
+    @IBOutlet weak var saveButton: UIButton!
     
     //variables
-    var selectedToy = ""
     var selectedToyID : UUID?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if selectedToyID != nil {
+            saveButton.isHidden = true
             //CoreData
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             let context = appDelegate.persistentContainer.viewContext
@@ -60,6 +61,9 @@ class DetailsVC: UIViewController,PHPickerViewControllerDelegate{
                 print("There is an error here!!!")
             }
             
+        } else {
+            saveButton.isHidden = false
+            saveButton.isEnabled = false
         }
         
         // hide keyboard when click in viewcontroller
@@ -100,6 +104,7 @@ class DetailsVC: UIViewController,PHPickerViewControllerDelegate{
                     } else if let picture = image as? UIImage {
                         DispatchQueue.main.sync {
                             self.toyImageView.image = picture
+                            self.saveButton.isEnabled = true
                         }
                     }
                 }

@@ -127,6 +127,7 @@
                         <outlet property="ageText" destination="vJU-fK-SE5" id="Xos-8u-Xbc"/>
                         <outlet property="colorText" destination="lED-2d-jCG" id="bcm-DK-k4Q"/>
                         <outlet property="nameText" destination="zzU-KC-dFc" id="6eS-Zi-Ceb"/>
+                        <outlet property="saveButton" destination="K8n-P5-n67" id="j6y-ge-UAa"/>
                         <outlet property="toyImageView" destination="QTF-VA-jIb" id="Wjb-jL-0Ad"/>
                         <outlet property="typeText" destination="3Og-d7-wmS" id="33c-Sq-Wcr"/>
                     </connections>

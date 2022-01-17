@@ -15,11 +15,11 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     //variables
     var nameArray = [String]()
     var idArray = [UUID]()
-    var selectedToy = ""
     var selectedToyID : UUID?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "My Sweet Toys List :)"
         // for TableView
         toysTableView.delegate = self
         toysTableView.dataSource = self
@@ -61,6 +61,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     // click Add button
     @objc func addButtonClicked (){
+        selectedToyID = nil
         performSegue(withIdentifier: "toDetailsVCS", sender: nil)
     }
     
